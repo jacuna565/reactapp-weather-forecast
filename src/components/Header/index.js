@@ -4,7 +4,7 @@ import './styles.scss';
 
 import logo from '../../assets/logo.png';
 
-export default function Header() {
+const Header = () => {
   return (
     <div className="header-container">
       <Link to="/">
@@ -16,4 +16,6 @@ export default function Header() {
       <h1 className="title">Pronóstico del tiempo</h1>
     </div>
   );
-}
+};
+
+export default Header;

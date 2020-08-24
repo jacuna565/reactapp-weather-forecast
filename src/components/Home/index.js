@@ -1,21 +1,16 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import './styles.scss';
 
-export default function Home() {
+import DayCardContainer from '../DayCardContainer';
+
+const Home = () => {
   return (
     <div className="container">
-      <h3 className="region-title">Region metropolitana de Santiago</h3>
-      <div className="box-container">
-        <Link to="/monday">
-          <div className="box">
-            <span className="text-day">lun.</span>
-            <div>imge</div>
-            <span className="text-max-temperature">max .</span>
-            <span className="text-min-temperature">min .</span>
-          </div>
-        </Link>
-      </div>
+      <h3 className="region-title">Santiago, CL</h3>
+      <div className="region-info">6:23pm, Monday, August 24, 2020</div>
+      <DayCardContainer />
     </div>
   );
-}
+};
+
+export default Home;
