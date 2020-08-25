@@ -20,7 +20,7 @@ export default function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(allActions.weatherActions.loadWeather('&units=metric'));
+    // dispatch(allActions.weatherActions.loadWeather('&units=metric'));
     setTimeout(() => {
       showLoader();
     }, 2000);
@@ -44,17 +44,16 @@ export default function App() {
     </div>;
   } else {
     rndr = <Router>
-          <div className="app-container">
-              <Header />
-              <Switch>
-                <Route path="/:path" children={<DayDetail/>} />
-                <Route path="/">
-                  <Home />
-                </Route>
-              </Switch>
-            </div>
-            <div>Desarrollo por: Jan Acuna</div>
-          </Router>;
+      <div className="app-container">
+        <Header />
+        <Switch>
+          <Route path="/:path" children={<><DayDetail/></>} />
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>;
   }
 
   return (rndr);

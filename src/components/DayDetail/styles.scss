@@ -1,0 +1,63 @@
+.detail-header {
+  padding: 50px;
+  .title-day {
+    color: #ed6e4d;
+    margin: 5px;
+  }
+  
+  .title-date {
+    color: #333;
+    font-style: italic;
+    margin: 5px;
+  }
+  .icon-header {
+    font-size: 32px;
+    background-color: #3770c7;
+    color: #fff;
+    border-radius: 4px;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}
+
+.detail-container {
+  .temperature-container {
+    display: flex;
+    align-items: center;
+    .temperature {
+      display: grid;
+      .value {
+        color: #333;
+        font-size: 70px;
+      }
+      .description {
+        font-weight: bold;
+        color: #ed6e4d;
+        text-transform: capitalize;
+      }
+      .description-altern {
+        font-weight: 300;
+        color: #333;
+        font-style: italic;
+      }
+    }
+  }
+  .stats-container {
+    text-align: center;
+    margin: 25px;
+    .stats {
+      display: contents;
+      align-items: center;
+      .icon {
+        font-size: 32px;
+        color: #ed6e4d;
+        margin-right: 5px;
+      }
+      .description {
+        font-weight: 200;
+        margin-right: 25px;
+      }
+    }
+  }
+}

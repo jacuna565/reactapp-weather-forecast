@@ -6,11 +6,14 @@ import DayCard from '../DayCard';
 
 import allActions from '../../actions';
 
+// import json from '../../example.json';
+// import jsonEvery3 from '../../every3.json';
+
 const SHORT_WEEK_DAY = ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"];
 
 const DayCardContainer = ({thermometricUnit}) => {
-
   const weatherReducer = useSelector((state) => state.weatherReducer);
+  const weatherEvery3HoursReducer = useSelector((state) => state.weatherEvery3HoursReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,31 +24,79 @@ const DayCardContainer = ({thermometricUnit}) => {
     let filter = '';
     filter = thermometricUnit === 'Celsius' ? "&units=metric" : thermometricUnit === "Fahrenheit" ? "&units=imperial" : ''
     dispatch(allActions.weatherActions.loadWeather(filter));
-    // setCurrentThermometricUnit(filter);
+    dispatch(allActions.weatherActions.loadWeatherEvery3Hours(filter, "santiago"));
   }
+
+  function groupBy(list, uniqueDate) {
+    const map = new Map();
+    list.forEach((item) => {
+         const key =item.dt_txt.includes(uniqueDate);
+         const collection = map.get(key);
+         if (!collection) {
+             map.set(key, [item]);
+         } else {
+             collection.push(item);
+         }
+    });
+    return map;
+  }
+
+  const resultArr = (arrayDates) => (
+    arrayDates.reduce((acc,item) => {
+      if(!acc.includes(item)){
+      acc.push(item);
+      }
+    return acc;
+    },[])
+  );
   
   const renderDays = () =>{
-    let list = weatherReducer.weathers.daily;
+    let list = weatherEvery3HoursReducer.weathers.list; // for every 3 hours
+    // let list = jsonEvery3.list;
     const data = [];
-    list.map((element, index) => {
-      if(index > 0 && index < 6){
-        var day = moment.unix(element.dt);
-        var dayText= moment(day).format('dddd');
+    let arrayDates = [];
+    const every3hoursData = [];
+
+    (list !== undefined) && list.map((element) => {
+      var dateText = element.dt_txt;
+      var splitedDate = dateText.split(' ')[0];
+      arrayDates.push(splitedDate);
+    })
+    
+    let uniqueDates = resultArr(arrayDates);
+    console.log(uniqueDates)
+    uniqueDates.forEach((item) => {
+      const grouped = groupBy(list, item);
+      for (const [key, value] of grouped.entries()) {
+        if(key){
+          every3hoursData.push(value);
+        }
+      }
+    });
+    console.log(every3hoursData)
+    let listDaily = weatherReducer.weathers.daily; // daily
+    // let listDaily = json.daily;
+    (listDaily !== undefined) && listDaily.map((item, index) => {
+      if(index > 0 && index < 6) {
+        var day = moment.unix(item.dt).format("YYYY-MM-DD HH:mm");
+        var dayText= moment(day).format("dddd");
         var dayNumber = moment(day).day();
         data.push(
           <DayCard
             key={index}
             day={dayText}
             shortTitle={SHORT_WEEK_DAY[dayNumber]}
-            maxTemp={element.temp.max}
-            minTemp={element.temp.min}
-            icon={element.weather[0].icon}
+            maxTemp={item.temp.max}
+            minTemp={item.temp.min}
+            icon={item.weather[0].icon}
             isLoading={weatherReducer.isLoading}
+            item={item}
+            elements={every3hoursData[index -1]}
           />
         )
       }
     })
-    return data;
+    return data
   }
 
   return (

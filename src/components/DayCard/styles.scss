@@ -3,22 +3,25 @@
   display: inline-block;
   width: 14%;
   position: relative;
-  height: 130px;
+  height: 150px;
+  background: rgba(237, 110, 77, 0.1);
+  margin: 5px;
+  border-radius: 6px;
   .text-day {
-    color: #bababa;
+    color: #555;
   }
   .text-max-temperature {
-    color: #878787;
+    color: #ed6e4d;
   }
   .text-min-temperature {
-    color: #bababa;
+    color: #444;
   }
   .weather {
     width: 100px;
   }
   .daycard-loader {
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
     left: calc(50% - 10px);
   }
 }

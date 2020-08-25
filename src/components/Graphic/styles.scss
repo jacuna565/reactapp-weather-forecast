@@ -1,0 +1,19 @@
+.graphic-container {
+    .custom-tooltip{
+        display: flex;
+        align-items: center;
+        position: relative;
+        span {
+            position: absolute;
+            top: 0;
+            right: calc(50% - 25px);
+            font-weight: #333;
+            // background-color: red;
+            // padding: 5px;
+            // border-radius: 6px;
+        }
+        img {
+            margin-top: 5px;
+        }
+    }
+}
