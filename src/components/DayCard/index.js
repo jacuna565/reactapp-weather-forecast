@@ -1,12 +1,13 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import './styles.scss';
-
-const CELSIUS_FORMULA =  - 273.15;
-// const FAHRENHEIT_FORMULA =  CELSIUS_FORMULA * 9/5 + 32;
+import Loader from "../Loader";
 
 const DayCard = (props) => {
-  let {day, shortTitle, maxTemp, minTemp, icon} = props;
+  let {day, shortTitle, maxTemp, minTemp, icon, isLoading} = props;
+  console.log('isLoading', isLoading);
+  let temperature = isLoading ? <div className="daycard-loader"><Loader /></div> : <> <span className="text-max-temperature">{(maxTemp).toFixed(0)}°</span>
+  <span className="text-min-temperature">{(minTemp).toFixed(0)}°</span> </>
   return (
     <Link to={"/"+day}>
       <div className="box">
@@ -18,8 +19,8 @@ const DayCard = (props) => {
             className="weather"
           />
         </div>
-        <span className="text-max-temperature">{(maxTemp + CELSIUS_FORMULA).toFixed(0)}°</span>
-        <span className="text-min-temperature">{(minTemp + CELSIUS_FORMULA).toFixed(0)}°</span>
+        {temperature}
+        
       </div>
     </Link>
   );

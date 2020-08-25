@@ -16,6 +16,7 @@ const Home = () => {
         <span name="Fahrenheit" onClick={handleSelected} className={thermometricUnit === "Fahrenheit" ? "selected" : ""}>°F</span>
         <span name="Kelvin" onClick={handleSelected} className={thermometricUnit === "Kelvin" ? "selected" : ""}>K</span>
       </div>
+      <span className="comment">Pronóstico del tiempo para los próximos <span className="comment-highlighted">5 dias</span></span>
       <DayCardContainer thermometricUnit={thermometricUnit}/>
     </div>
   );

@@ -2,6 +2,8 @@
   padding: 10px;
   display: inline-block;
   width: 14%;
+  position: relative;
+  height: 130px;
   .text-day {
     color: #bababa;
   }
@@ -13,5 +15,10 @@
   }
   .weather {
     width: 100px;
+  }
+  .daycard-loader {
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 10px);
   }
 }
