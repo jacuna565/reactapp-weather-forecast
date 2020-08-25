@@ -1,18 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import moment from 'moment';
 import './styles.scss';
 import DayCard from '../DayCard';
 
-const DayCardContainer = () => {
+import json from '../../example.json';
+
+const SHORT_WEEK_DAY = ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"];
+
+const DayCardContainer = ({thermometricUnit}) => {
+  const [currentThermometricUnit, setCurrentThermometricUnit] = useState('');
+  
+  useEffect(() => {
+    getThermometricUnitFilter();
+  },[thermometricUnit]);
+
+  const getThermometricUnitFilter = () => {
+    let filter = '';
+    filter = thermometricUnit === 'Celsius' ? "&units=metric" : thermometricUnit === "Fahrenheit" ? "&units=imperial" : ''
+    setCurrentThermometricUnit(filter);
+  }
+
+  
+  const renderDays = () =>{
+    let list = json.daily;
+    const data = [];
+    list.map((element, index) => {
+      if(index < 6){
+        var day = moment.unix(element.dt);
+        var dayText= moment(day).format('dddd');
+        var dayNumber = moment(day).day();
+        data.push(
+          <DayCard
+            key={index}
+            day={dayText}
+            shortTitle={SHORT_WEEK_DAY[dayNumber]}
+            maxTemp={element.temp.max}
+            minTemp={element.temp.min}
+            icon={element.weather[0].icon}
+          />
+        )
+      }
+    })
+
+    return data;
+}
   return (
-    <div className="box-container">
-      <DayCard day="monday" shortTitle="lun."/>
-      <DayCard day="tuesday" shortTitle="mar."/>
-      <DayCard day="wednesday" shortTitle="mier."/>
-      <DayCard day="thursday" shortTitle="jue."/>
-      <DayCard day="friday" shortTitle="vie."/>
-      <DayCard day="saturday" shortTitle="sab."/>
-      <DayCard day="sunday" shortTitle="dom."/>
-    </div>
+    <>
+      <div className="box-container">
+        {renderDays()}
+      </div>
+    </>
   );
 };
 

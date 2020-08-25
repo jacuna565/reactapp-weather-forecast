@@ -3,13 +3,24 @@
   padding: 15px;
   border-radius: 0 0 6px 6px;
   border-top: 3px solid #D9D9D9;
+  text-align: center;
   .region-title {
     color: #333;
     font-style: italic;
-    margin: 0;
   }
-  .region-info {
-    color: #333;
-    margin-bottom: 15px;
+  .thermometric-unit {
+    margin-bottom: 25px;
+    span {
+      padding: 5px 10px;
+      &:hover {
+        cursor: pointer;
+      }
+      &.selected {
+        color: #fff;
+        background: #ED6E4D;
+        border-radius: 4px;
+    
+      }
+    }
   }
 }

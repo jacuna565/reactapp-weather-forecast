@@ -15,24 +15,31 @@ export default function App() {
         <Header />
         <Switch>
           <Route path="/monday">
+            <Home />
             <DayDetail day="monday" />
           </Route>
           <Route path="/tuesday">
+            <Home />
             <DayDetail day="tuesday" />
           </Route>
           <Route path="/wednesday">
+            <Home />
             <DayDetail day="wednesday" />
           </Route>
           <Route path="/thursday">
+            <Home />
             <DayDetail day="thursday" />
           </Route>
           <Route path="/friday">
+            <Home />
             <DayDetail day="friday" />
           </Route>
           <Route path="/saturday">
+            <Home />
             <DayDetail day="saturday" />
           </Route>
           <Route path="/sunday">
+            <Home />
             <DayDetail day="sunday" />
           </Route>
           <Route path="/">
