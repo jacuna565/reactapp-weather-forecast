@@ -1,19 +1,20 @@
+@import "../../func/variables.scss";
 .detail-header {
   padding: 50px;
   .title-day {
-    color: #ed6e4d;
+    color: $primary-color;
     margin: 5px;
   }
 
   .title-date {
-    color: #333;
+    color: $gray-dark;
     font-style: italic;
     margin: 5px;
   }
   .icon-header {
     font-size: 32px;
-    background-color: #3770c7;
-    color: #fff;
+    background-color: $primary-color;
+    color: $white;
     border-radius: 4px;
     &:hover {
       cursor: pointer;
@@ -28,17 +29,17 @@
     .temperature {
       display: grid;
       .value {
-        color: #333;
+        color: $gray-dark;
         font-size: 70px;
       }
       .description {
         font-weight: bold;
-        color: #ed6e4d;
+        color: $primary-color;
         text-transform: capitalize;
       }
       .description-altern {
         font-weight: 300;
-        color: #333;
+        color: $gray-dark;
         font-style: italic;
       }
     }
@@ -51,7 +52,7 @@
       align-items: center;
       .icon {
         font-size: 32px;
-        color: #ed6e4d;
+        color: $primary-color;
         margin-right: 5px;
       }
       .description {

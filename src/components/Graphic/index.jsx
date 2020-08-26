@@ -44,7 +44,7 @@ export default function Graphic({ elements, categories }) {
       xaxis: {
         categories: categories,
         title: {
-          text: "Hours",
+          text: "Horas",
         },
       },
     });

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 import moment from "moment";
 import {
   WiStrongWind,
@@ -10,6 +10,7 @@ import {
   WiSunset,
   WiDaySunny,
 } from "react-icons/wi";
+import {IoIosArrowBack} from "react-icons/io";
 import "./styles.scss";
 import Graphic from "../Graphic";
 import Tooltip from "../Tooltip";
@@ -45,6 +46,7 @@ const DayDetail = () => {
   return (
     <div>
       <div className="detail-header">
+        <Link to="/"><IoIosArrowBack className="icon-header"/></Link>
         <h3 className="title-day">{path}</h3>
         <span className="title-date">{moment.unix(item.dt).format("ll")}</span>
         <div className="detail-container">

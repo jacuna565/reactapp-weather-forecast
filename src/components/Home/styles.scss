@@ -1,8 +1,9 @@
+@import "../../func/variables.scss";
 .container {
   padding: 15px;
   text-align: center;
   .region-title {
-    color: #333;
+    color: $gray-dark;
     font-style: italic;
   }
   .thermometric-unit {
@@ -13,17 +14,17 @@
         cursor: pointer;
       }
       &.selected {
-        color: #fff;
-        background: #ed6e4d;
+        color: $white;
+        background: $primary-color;
         border-radius: 4px;
       }
     }
   }
   .comment {
     font-style: italic;
-    color: #333;
+    color: $gray-dark;
   }
   .comment-highlighted {
-    color: #ed6e4d;
+    color: $primary-color;
   }
 }

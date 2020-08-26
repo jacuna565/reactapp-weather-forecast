@@ -39,15 +39,7 @@ export default function App() {
         <div className="app-container">
           <Header />
           <Switch>
-            <Route
-              path="/:path"
-              children={
-                <>
-                  <Home />
-                  <DayDetail />
-                </>
-              }
-            />
+            <Route path="/:path" children={<DayDetail />} />
             <Route path="/">
               <Home />
             </Route>

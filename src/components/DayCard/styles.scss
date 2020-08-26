@@ -1,3 +1,4 @@
+@import "../../func/variables.scss";
 .box {
   padding: 10px;
   display: inline-block;
@@ -8,13 +9,13 @@
   margin: 5px;
   border-radius: 6px;
   .text-day {
-    color: #555;
+    color: $gray;
   }
   .text-max-temperature {
-    color: #ed6e4d;
+    color: $primary-color;
   }
   .text-min-temperature {
-    color: #444;
+    color: $gray;
   }
   .daycard-loader {
     position: absolute;
