@@ -31,10 +31,7 @@ const loadWeather = (units) => async (dispatch, getState) => {
     });
 };
 
-const loadWeatherEvery3Hours = (units, cityname) => async (
-  dispatch,
-  getState
-) => {
+const loadWeatherEvery3Hours = (units, cityname) => async ( dispatch, getState) => {
   dispatch({ type: LOAD_WEATHER_EVERY3HOURS_START });
   const stranger = getLogoutClient();
   stranger

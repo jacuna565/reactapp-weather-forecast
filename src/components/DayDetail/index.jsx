@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import moment from "moment";
 import {
@@ -19,6 +19,29 @@ const DayDetail = () => {
   let { path } = useParams();
   let location = useLocation();
   let item = location.state.item;
+  const [elements, setElements] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const seedGraphicData = () => {
+      let data = [];
+      let series = [];
+      let categories = [];
+      let serieObject = {};
+      location.state.elements &&
+        location.state.elements.forEach((item, index) => {
+          data.push(item.main.temp);
+          categories.push(item.dt_txt.split(" ")[1]);
+        });
+      serieObject.name = "Temperatura";
+      serieObject.data = data;
+      series.push(serieObject);
+      setElements(series);
+      setCategories(categories);
+    };
+    seedGraphicData();
+  }, [location]);
+
   return (
     <div>
       <div className="detail-header">
@@ -102,7 +125,7 @@ const DayDetail = () => {
           </div>
         </div>
       </div>
-      <Graphic elements={location.state.elements} />
+      <Graphic elements={elements} categories={categories} />
       <BoxList elements={location.state.elements} />
     </div>
   );

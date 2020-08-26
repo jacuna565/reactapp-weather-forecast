@@ -5,14 +5,17 @@ import DayCardContainer from "../DayCardContainer";
 
 const Home = () => {
   const [thermometricUnit, setThermometricUnit] = useState("Celsius");
+
   const handleSelected = (event) => {
     setThermometricUnit(event.target.getAttribute("name"));
   };
+
   return (
-    <div className="container">
+    <div data-testid="home-container" className="container">
       <h3 className="region-title">Santiago, CL</h3>
       <div className="thermometric-unit">
         <span
+          data-testid="span-clicked"
           name="Celsius"
           onClick={handleSelected}
           className={thermometricUnit === "Celsius" ? "selected" : ""}

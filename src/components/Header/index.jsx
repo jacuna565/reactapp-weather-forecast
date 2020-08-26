@@ -6,9 +6,9 @@ import logo from "../../assets/logo.png";
 
 const Header = () => {
   return (
-    <div className="header-container">
-      <Link to="/">
-        <img src={logo} alt="Logo" className="logo" />
+    <div data-testid="header-container" className="header-container">
+      <Link data-testid="link-to-root" to="/">
+        <img data-testid="header-logo" src={logo} alt="Logo" className="logo" />
       </Link>
       <h1 className="title">Pronóstico del tiempo</h1>
     </div>

@@ -9,7 +9,7 @@ const BoxList = ({ elements }) => {
       elements.forEach((item, index) => {
         var hour = moment(item.dt_txt).format("HH:mm");
         data.push(
-          <div className="box" kwy={index}>
+          <div className="box" key={index}>
             <span className="text-day">{hour}</span>
             <div>
               <img

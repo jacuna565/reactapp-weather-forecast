@@ -1,66 +1,67 @@
 import React, { useState, useEffect } from "react";
-import { AreaChart, Area, Tooltip, ResponsiveContainer } from "recharts";
-import "./styles.scss";
+import ReactApexChart from "react-apexcharts";
 
-const Graphic = ({ elements }) => {
-  const [data, setData] = useState([]);
-
+export default function Graphic({ elements, categories }) {
+  const [options, setOptions] = useState();
   useEffect(() => {
-    const seedGraphicData = () => {
-      let data = [];
-      elements.forEach((item, index) => {
-        let xyObject = {};
-        xyObject.name = "item" + index;
-        xyObject.x = item.dt_txt;
-        xyObject.y = item.main.temp;
-        xyObject.label = item.main.temp + "°";
-        xyObject.icon = item.weather[0].icon;
-        data.push(xyObject);
-      });
-      setData(data);
-    };
-    seedGraphicData();
-  }, [elements]);
+    setOptions({
+      chart: {
+        zoom: {
+          enabled: false,
+        },
+        height: 350,
+        type: "line",
+        dropShadow: {
+          enabled: true,
+          color: "#000",
+          top: 18,
+          left: 7,
+          blur: 10,
+          opacity: 0.2,
+        },
+        toolbar: {
+          show: false,
+        },
+      },
+      colors: ["#ed6e4d", "#545454"],
+      dataLabels: {
+        enabled: true,
+      },
+      stroke: {
+        curve: "smooth",
+      },
+      title: {
+        text: "Temperatura",
+        align: "left",
+      },
+      grid: {
+        borderColor: "#e7e7e7",
+        row: {
+          colors: ["#f3f3f3", "transparent"],
+          opacity: 0.5,
+        },
+      },
+      xaxis: {
+        categories: categories,
+        title: {
+          text: "Hours",
+        },
+      },
+    });
+  }, [elements, categories]);
 
-  const CustomTooltip = ({ active, payload, label }) => {
-    let globalPayload = payload[0];
-
-    if (active) {
-      return (
-        <div className="custom-tooltip">
-          <span>{globalPayload.payload.label}</span>
-          <img
-            src={require("../../assets/" + globalPayload.payload.icon + ".png")}
-            alt="icon"
-          />
-        </div>
-      );
-    }
-
-    return null;
-  };
-
-  return (
-    <div className="graphic-container">
-      <div style={{ width: "100%", height: 300 }}>
-        <ResponsiveContainer>
-          <AreaChart
-            height={20}
-            data={data}
-            margin={{
-              top: 5,
-              right: 0,
-              left: 0,
-              bottom: 5,
-            }}
-          >
-            <Tooltip content={<CustomTooltip />} />
-            <Area type="monotone" dataKey="y" stroke="#ed6e4d" fill="#ed6e4d" />
-          </AreaChart>
-        </ResponsiveContainer>
+  if (elements.length !== 0) {
+    return (
+      <div id="chart">
+        <ReactApexChart
+          options={options}
+          series={elements}
+          type="line"
+          height={350}
+        />
       </div>
-    </div>
-  );
-};
+    );
+  }
 
-export default Graphic;
+  return <div>./...</div>;
+}
