@@ -10,7 +10,7 @@ import {
   WiSunset,
   WiDaySunny,
 } from "react-icons/wi";
-import {IoIosArrowBack} from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
 import "./styles.scss";
 import Graphic from "../Graphic";
 import Tooltip from "../Tooltip";
@@ -19,7 +19,7 @@ import BoxList from "../BoxList";
 const DayDetail = () => {
   let { path } = useParams();
   let location = useLocation();
-  let item = location.state.item;
+  let item = location.state !== undefined && location.state.item;
   const [elements, setElements] = useState([]);
   const [categories, setCategories] = useState([]);
 
@@ -29,7 +29,7 @@ const DayDetail = () => {
       let series = [];
       let categories = [];
       let serieObject = {};
-      location.state.elements &&
+      location.state &&
         location.state.elements.forEach((item, index) => {
           data.push(item.main.temp);
           categories.push(item.dt_txt.split(" ")[1]);
@@ -44,22 +44,28 @@ const DayDetail = () => {
   }, [location]);
 
   return (
-    <div>
+    <div data-testid="daydetail-container">
       <div className="detail-header">
-        <Link to="/"><IoIosArrowBack className="icon-header"/></Link>
+        <Link to="/">
+          <IoIosArrowBack className="icon-header" />
+        </Link>
         <h3 className="title-day">{path}</h3>
         <span className="title-date">{moment.unix(item.dt).format("ll")}</span>
         <div className="detail-container">
           <div className="temperature-container">
             <img
-              src={require("../../assets/" + item.weather[0].icon + ".png")}
+              src={
+                item
+                  ? require("../../assets/" + item.weather[0].icon + ".png")
+                  : "../../assets/01d.png"
+              }
               alt="icon"
             />
             <div className="temperature">
-              <span className="value">{item.temp.day}°</span>
-              <span className="description">{item.weather[0].description}</span>
+              <span className="value">{item && item.temp.day}°</span>
+              <span className="description">{item && item.weather[0].description}</span>
               <span className="description-altern">
-                Feels like: {item.feels_like.day}°
+                Feels like: {item && item.feels_like.day}°
               </span>
             </div>
           </div>
@@ -128,7 +134,7 @@ const DayDetail = () => {
         </div>
       </div>
       <Graphic elements={elements} categories={categories} />
-      <BoxList elements={location.state.elements} />
+      <BoxList elements={location.state !== undefined && location.state.elements} />
     </div>
   );
 };

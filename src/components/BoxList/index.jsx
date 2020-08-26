@@ -5,7 +5,7 @@ import "./styles.scss";
 const BoxList = ({ elements }) => {
   const renderItems = () => {
     let data = [];
-    elements !== undefined &&
+    elements &&
       elements.forEach((item, index) => {
         var hour = moment(item.dt_txt).format("HH:mm");
         data.push(
@@ -29,7 +29,7 @@ const BoxList = ({ elements }) => {
       });
     return data;
   };
-  return <div className="box-list-container">{renderItems()}</div>;
+  return <div data-testid="boxlist-container" className="box-list-container">{renderItems()}</div>;
 };
 
 export default BoxList;

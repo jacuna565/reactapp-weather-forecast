@@ -46,11 +46,11 @@ const DayCardContainer = ({ thermometricUnit }) => {
   }
 
   const resultArr = (arrayDates) =>
-    arrayDates.reduce((acc, item) => {
-      if (!acc.includes(item)) {
-        acc.push(item);
+    arrayDates.reduce((uniqueArr, item) => {
+      if (!uniqueArr.includes(item)) {
+        uniqueArr.push(item);
       }
-      return acc;
+      return uniqueArr;
     }, []);
 
   const renderDays = () => {
@@ -101,11 +101,7 @@ const DayCardContainer = ({ thermometricUnit }) => {
     return data;
   };
 
-  return (
-    <>
-      <div className="box-container">{renderDays()}</div>
-    </>
-  );
+  return <div data-testid="daycard-container" className="box-container">{renderDays()}</div>;
 };
 
 export default DayCardContainer;

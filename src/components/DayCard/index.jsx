@@ -28,13 +28,14 @@ const DayCard = (props) => {
     </div>
   ) : (
     <>
-      <span className="text-max-temperature">{maxTemp.toFixed(0)}°</span>
-      <span className="text-min-temperature">{minTemp.toFixed(0)}°</span>
+      <span className="text-max-temperature">{maxTemp && maxTemp.toFixed(0)}°</span>
+      <span className="text-min-temperature">{minTemp && minTemp.toFixed(0)}°</span>
     </>
   );
 
   return (
     <Link
+      data-testid="dayCard-container"
       to={{
         pathname: "/" + day,
         state: {
@@ -47,7 +48,7 @@ const DayCard = (props) => {
         <span className="text-day">{shortTitle}</span>
         <div>
           <img
-            src={require("../../assets/" + icon + ".png")}
+            src={props.icon ? require("../../assets/" + icon + ".png") : "../../assets/01d.png"}
             alt="Weather"
             className="weather"
           />

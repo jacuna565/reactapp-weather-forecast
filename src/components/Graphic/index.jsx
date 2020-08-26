@@ -50,18 +50,17 @@ export default function Graphic({ elements, categories }) {
     });
   }, [elements, categories]);
 
-  if (elements.length !== 0) {
-    return (
-      <div id="chart">
-        <ReactApexChart
-          options={options}
-          series={elements}
-          type="line"
-          height={350}
-        />
-      </div>
+  let renderGraphic = <div>Cargando ...</div>;
+  if (elements && elements.length !== 0) {
+    renderGraphic = (
+      <ReactApexChart
+        options={options}
+        series={elements}
+        type="line"
+        height={350}
+      />
     );
   }
 
-  return <div>./...</div>;
+  return <div data-testid="graphic-container">{renderGraphic}</div>;
 }
