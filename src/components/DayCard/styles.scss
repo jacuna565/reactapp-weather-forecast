@@ -1,7 +1,7 @@
 .box {
   padding: 10px;
   display: inline-block;
-  width: 14%;
+  width: 40%;
   position: relative;
   height: 150px;
   background: rgba(237, 110, 77, 0.1);
@@ -17,7 +17,7 @@
     color: #444;
   }
   .weather {
-    width: 100px;
+    // width: 100px;
   }
   .daycard-loader {
     position: absolute;

@@ -16,7 +16,6 @@ const loadWeather = (units) => async (dispatch, getState) => {
   stranger
     .get('/onecall?lat='+lat+'&lon='+lon+'&exclude=hourly,minutely&appid='+apiKey+units)
     .then((response) => {
-      console.log('RESPONSE', response.data)
       dispatch({type: LOAD_WEATHER_SUCCESS, payload: response.data});
     })
     .catch(function (error) {
@@ -30,7 +29,6 @@ const loadWeatherEvery3Hours = (units, cityname) => async (dispatch, getState) =
   stranger
     .get('/forecast?q='+cityname+'&appid='+apiKey+units)
     .then((response) => {
-      console.log('RESPONSE', response.data)
       dispatch({type: LOAD_WEATHER_EVERY3HOURS_SUCCESS, payload: response.data});
     })
     .catch(function (error) {

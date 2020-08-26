@@ -6,9 +6,6 @@ import DayCard from '../DayCard';
 
 import allActions from '../../actions';
 
-// import json from '../../example.json';
-// import jsonEvery3 from '../../every3.json';
-
 const SHORT_WEEK_DAY = ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"];
 
 const DayCardContainer = ({thermometricUnit}) => {
@@ -51,8 +48,7 @@ const DayCardContainer = ({thermometricUnit}) => {
   );
   
   const renderDays = () =>{
-    let list = weatherEvery3HoursReducer.weathers.list; // for every 3 hours
-    // let list = jsonEvery3.list;
+    let list = weatherEvery3HoursReducer.weathers.list; 
     const data = [];
     let arrayDates = [];
     const every3hoursData = [];
@@ -64,7 +60,6 @@ const DayCardContainer = ({thermometricUnit}) => {
     })
     
     let uniqueDates = resultArr(arrayDates);
-    console.log(uniqueDates)
     uniqueDates.forEach((item) => {
       const grouped = groupBy(list, item);
       for (const [key, value] of grouped.entries()) {
@@ -73,9 +68,8 @@ const DayCardContainer = ({thermometricUnit}) => {
         }
       }
     });
-    console.log(every3hoursData)
-    let listDaily = weatherReducer.weathers.daily; // daily
-    // let listDaily = json.daily;
+
+    let listDaily = weatherReducer.weathers.daily; 
     (listDaily !== undefined) && listDaily.map((item, index) => {
       if(index > 0 && index < 6) {
         var day = moment.unix(item.dt).format("YYYY-MM-DD HH:mm");

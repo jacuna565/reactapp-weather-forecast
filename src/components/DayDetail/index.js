@@ -1,10 +1,11 @@
 import React from "react";
-import {Link, useParams, useLocation} from "react-router-dom";
+import {useParams, useLocation} from "react-router-dom";
 import moment from 'moment';
 import { WiStrongWind, WiHumidity, WiCloudy, WiRain, WiSunrise, WiSunset, WiDaySunny } from 'react-icons/wi';
-import { IoIosArrowBack } from 'react-icons/io';
 import './styles.scss';
 import Graphic from "../Graphic";
+import Tooltip from "../Tooltip";
+import BoxList from "../BoxList";
 
 const DayDetail = () => {
   let { path } = useParams();
@@ -13,7 +14,6 @@ const DayDetail = () => {
   return (
     <div>
       <div className="detail-header">
-        <Link to="/"><IoIosArrowBack className="icon-header"/></Link>
         <h3 className="title-day">{path}</h3>
         <span className="title-date">{moment.unix(item.dt).format("ll")}</span>
         <div className="detail-container">
@@ -26,45 +26,53 @@ const DayDetail = () => {
             </div>
           </div>
           <div className="stats-container">
-            <div className="stats">
-              <span><WiStrongWind className="icon"/></span>
-              <span className="description">{item.wind_speed}m/s</span>
-              {/* velocidad de viento */}
-            </div>
-            <div className="stats">
-              <span><WiHumidity className="icon"/></span>
-              <span className="description">{item.humidity}</span>
-              {/* humedad */}
-            </div>
-            <div className="stats">
-              <span><WiCloudy className="icon"/></span>
-              <span className="description">{item.clouds}%</span>
-              {/* nublado */}
-            </div>
-            <div className="stats">
-              <span><WiRain className="icon"/></span>
-              <span className="description">{item.pop}%</span> 
-              {/* probabilidad de precipitacion */}
-            </div>
-            <div className="stats">
-              <span><WiSunrise className="icon"/></span>
-              <span className="description">{moment.unix(item.sunrise).format("LT")}</span> 
-              {/* amanecer */}
-            </div>
-            <div className="stats">
-              <span><WiSunset className="icon"/></span>
-              <span className="description">{moment.unix(item.sunset).format("LT")}</span> 
-              {/* Anochecer */}
-            </div>
-            <div className="stats">
-              <span><WiDaySunny className="icon"/></span>
-              <span className="description">{item.uvi}</span> 
-              {/* indice UV del dia */}
-            </div>
+            <Tooltip message="Velocidad de viento">
+              <div className="stats">
+                <span><WiStrongWind className="icon"/></span>
+                <span className="description">{item.wind_speed}m/s</span>
+              </div>
+            </Tooltip>
+            <Tooltip message="Humedad">
+              <div className="stats">
+                <span><WiHumidity className="icon"/></span>
+                <span className="description">{item.humidity}</span>
+              </div>
+            </Tooltip>
+            <Tooltip message="Nubosidad">
+              <div className="stats">
+                <span><WiCloudy className="icon"/></span>
+                <span className="description">{item.clouds}%</span>
+              </div>
+            </Tooltip>
+            <Tooltip message="Probabilidad de precipitacion">
+              <div className="stats">
+                <span><WiRain className="icon"/></span>
+                <span className="description">{item.pop}%</span> 
+              </div>
+            </Tooltip>
+            <Tooltip message="Amanecer">
+              <div className="stats">
+                <span><WiSunrise className="icon"/></span>
+                <span className="description">{moment.unix(item.sunrise).format("LT")}</span> 
+              </div>
+            </Tooltip>
+            <Tooltip message="Anochecer">
+              <div className="stats">
+                <span><WiSunset className="icon"/></span>
+                <span className="description">{moment.unix(item.sunset).format("LT")}</span> 
+              </div>
+            </Tooltip>
+            <Tooltip message="Indice de UV del dia">
+              <div className="stats">
+                <span><WiDaySunny className="icon"/></span>
+                <span className="description">{item.uvi}</span> 
+              </div>
+            </Tooltip>
           </div>
         </div>
       </div>
       <Graphic elements={location.state.elements}/>
+      <BoxList elements={location.state.elements}/>
     </div>
   );
 };

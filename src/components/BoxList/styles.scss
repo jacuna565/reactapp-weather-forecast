@@ -1,0 +1,9 @@
+.box-list-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 25px;
+  .box{
+    background: rgba(228, 235, 243, 0.5);
+    text-align: center;
+  }
+}

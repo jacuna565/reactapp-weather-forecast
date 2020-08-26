@@ -14,11 +14,22 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
-  /* background: rgb(115,146,192);
-  background: linear-gradient(rgba(115,146,192,1) 0%, rgba(236,197,176,1) 100%); */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+@media only screen and (min-width: 600px) {
+  .box {
+    width: 33% !important;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .box {
+    width: 15% !important;
+  }
 }
