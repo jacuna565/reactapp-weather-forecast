@@ -2,7 +2,7 @@ import {
   LOAD_WEATHER_START,
   LOAD_WEATHER_SUCCESS,
   LOAD_WEATHER_FAILURE,
-} from '../actions/types';
+} from "../actions/types";
 
 let initialState = {
   weathers: {},
@@ -33,6 +33,5 @@ const weathersdata = (state = initialState, action) => {
       return state;
   }
 };
-
 
 export default weathersdata;

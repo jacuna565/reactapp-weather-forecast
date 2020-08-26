@@ -1,4 +1,4 @@
-import weatherActions from './weatherActions';
+import weatherActions from "./weatherActions";
 
 const allActions = {
   weatherActions,

@@ -1,5 +1,5 @@
-import axios from 'axios';
-import {server} from './globals';
+import axios from "axios";
+import { server } from "./globals";
 const logoutClient = axios.create({
   baseURL: server,
   timeout: 10000,
@@ -12,7 +12,7 @@ logoutClient.interceptors.response.use(
   },
   function (error) {
     return Promise.reject(error.response);
-  },
+  }
 );
 
 const getLogoutClient = () => {
