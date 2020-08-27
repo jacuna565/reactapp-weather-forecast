@@ -22,7 +22,7 @@ const Home = () => {
 
   return (
     <div data-testid="home-container" className="container">
-      <h3 className="region-title">Santiago, CL {thermUnitReducer.unit}</h3>
+      <h3 className="region-title">Santiago, CL</h3>
       <div className="thermometric-unit">
         <span
           data-testid="span-clicked"
@@ -48,8 +48,8 @@ const Home = () => {
         </span>
       </div>
       <span className="comment">
-        Pronóstico del tiempo para los próximos{" "}
-        <span className="comment-highlighted">5 dias</span>
+        Weather forecast for the next
+        <span className="comment-highlighted"> 5 days</span>
       </span>
       <DayCardContainer thermometricUnit={thermometricUnit} />
     </div>

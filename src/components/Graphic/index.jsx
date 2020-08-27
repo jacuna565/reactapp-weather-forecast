@@ -31,7 +31,7 @@ export default function Graphic({ elements, categories }) {
         curve: "smooth",
       },
       title: {
-        text: "Temperatura",
+        text: "Temperature",
         align: "left",
       },
       grid: {
@@ -44,7 +44,7 @@ export default function Graphic({ elements, categories }) {
       xaxis: {
         categories: categories,
         title: {
-          text: "Horas",
+          text: "Hours",
         },
       },
     });

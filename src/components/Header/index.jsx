@@ -10,7 +10,7 @@ const Header = () => {
       <Link data-testid="link-to-root" to="/">
         <img data-testid="header-logo" src={logo} alt="Logo" className="logo" />
       </Link>
-      <h1 className="title">Pronóstico del tiempo</h1>
+      <h1 className="title">Weather forecast</h1>
     </div>
   );
 };

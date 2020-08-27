@@ -13,6 +13,8 @@ This repo uses [openweathermap](https://openweathermap.org/api/one-call-api) (on
 
 Preview a [Demo](https://reactapp-weather-forecast.herokuapp.com/)
 
+Note: This is a code development specifily to Santiago, CL
+
 ## Available Scripts
 
 In the project directory, you can run:

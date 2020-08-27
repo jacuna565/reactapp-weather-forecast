@@ -11,7 +11,7 @@ it("Renders correctly", () => {
   );
   expect(queryByTestId("header-container")).toBeTruthy();
   expect(queryByTestId("header-logo")).toBeTruthy();
-  expect(findByText("Pronóstico del tiempo")).toBeTruthy();
+  expect(findByText("Weather forecast")).toBeTruthy();
 });
 
 it("Have link to root", () => {
