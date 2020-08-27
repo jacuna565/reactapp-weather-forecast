@@ -11,7 +11,6 @@ import {
   WiDaySunny,
 } from "react-icons/wi";
 import { IoIosArrowBack } from "react-icons/io";
-import {MONTHS} from "../../func/globals";
 import "./styles.scss";
 import Graphic from "../Graphic";
 import Tooltip from "../Tooltip";
