@@ -1,14 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { city, SHORT_WEEK_DAY, WEEK_DAY } from "../../func/globals";
 import "./styles.scss";
 import DayCard from "../DayCard";
+import Graphic from "../Graphic";
 
 import allActions from "../../actions";
 
 const DayCardContainer = ({ thermometricUnit }) => {
   const weatherReducer = useSelector((state) => state.weatherReducer);
+  const [elements, setElements] = useState([]);
+  const [categories, setCategories] = useState([]);
   const weatherEvery3HoursReducer = useSelector(
     (state) => state.weatherEvery3HoursReducer
   );
@@ -16,18 +19,35 @@ const DayCardContainer = ({ thermometricUnit }) => {
 
   useEffect(() => {
     const getThermometricUnitFilter = () => {
-      let filter = "";
-      filter =
-        thermometricUnit === "Celsius"
-          ? "&units=metric"
-          : thermometricUnit === "Fahrenheit"
-          ? "&units=imperial"
-          : "";
+      let filter = "&units=" + thermometricUnit;
       dispatch(allActions.weatherActions.loadWeather(filter));
       dispatch(allActions.weatherActions.loadWeatherEvery3Hours(filter, city));
     };
     getThermometricUnitFilter();
   }, [thermometricUnit]);
+
+  useEffect(() => {
+      seedGraphicData();
+  }, [weatherReducer]);
+
+  const seedGraphicData = () => {
+    let data = [];
+    let series = [];
+    let categories = [];
+    let serieObject = {};
+    weatherReducer.weathers.daily &&
+      weatherReducer.weathers.daily.forEach((item, index) => {
+        data.push(item.temp.day);
+        data.push(item.temp.night);
+        categories.push("day");
+        categories.push("night");
+      });
+    serieObject.name = "Temperature";
+    serieObject.data = data;
+    series.push(serieObject);
+    setElements(series);
+    setCategories(categories);
+  };
 
   function groupBy(list, uniqueDate) {
     const map = new Map();
@@ -98,7 +118,14 @@ const DayCardContainer = ({ thermometricUnit }) => {
     return data;
   };
 
-  return <div data-testid="daycard-container" className="box-container">{renderDays()}</div>;
+  return (
+    <>
+      <div data-testid="daycard-container" className="box-container">
+        {renderDays()}
+      </div>
+      <Graphic elements={elements} categories={categories} />
+    </>
+  );
 };
 
 export default DayCardContainer;

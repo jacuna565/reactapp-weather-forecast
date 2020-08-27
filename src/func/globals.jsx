@@ -2,6 +2,8 @@ export const server = "https://api.openweathermap.org/data/2.5";
 
 export const apiKey = "01c1ec8fdd915706ba2eebd0d8faf806";
 
+export const SHORT_THERM_UNIT = ["°C", "°F", "K"];
+
 export const SHORT_WEEK_DAY = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 export const WEEK_DAY = [
   "Sunday",

@@ -12,7 +12,6 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   const weatherReducer = useSelector((state) => state.weatherReducer);
-
   useEffect(() => {
     setTimeout(() => {
       showLoader();

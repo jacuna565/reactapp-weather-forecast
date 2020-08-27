@@ -1,7 +1,7 @@
 import {GET_THERM_UNIT} from "../actions/types";
 
 let initialState = {
-  unit: "Celsius",
+  unit: "metric",
 };
 
 const thermUnit = (state = initialState, action) => {

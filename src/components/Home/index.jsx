@@ -7,14 +7,17 @@ import allActions from "../../actions";
 
 const Home = () => {
   const thermUnitReducer = useSelector((state) => state.thermUnitReducer);
-  const [thermometricUnit, setThermometricUnit] = useState(thermUnitReducer.unit);
+  const weatherReducer = useSelector((state) => state.weatherReducer);
+  const [thermometricUnit, setThermometricUnit] = useState(
+    thermUnitReducer.unit
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // if(thermUnitReducer !== thermometricUnit){
-      dispatch(allActions.weatherActions.getThermUnit(thermometricUnit));
-    // }
-  },[thermometricUnit])
+    dispatch(allActions.weatherActions.getThermUnit(thermometricUnit));
+  }, [thermometricUnit]);
+
+  
 
   const handleSelected = (event) => {
     setThermometricUnit(event.target.getAttribute("name"));
@@ -26,23 +29,23 @@ const Home = () => {
       <div className="thermometric-unit">
         <span
           data-testid="span-clicked"
-          name="Celsius"
+          name="metric"
           onClick={handleSelected}
-          className={thermometricUnit === "Celsius" ? "selected" : ""}
+          className={thermometricUnit === "metric" ? "selected" : ""}
         >
           °C
         </span>
         <span
-          name="Fahrenheit"
+          name="imperial"
           onClick={handleSelected}
-          className={thermometricUnit === "Fahrenheit" ? "selected" : ""}
+          className={thermometricUnit === "imperial" ? "selected" : ""}
         >
           °F
         </span>
         <span
-          name="Kelvin"
+          name=""
           onClick={handleSelected}
-          className={thermometricUnit === "Kelvin" ? "selected" : ""}
+          className={thermometricUnit === "" ? "selected" : ""}
         >
           K
         </span>

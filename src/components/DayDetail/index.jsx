@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useLocation, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import moment from "moment";
 import { IoIosArrowBack } from "react-icons/io";
-import Stats from './Stats';
+import { SHORT_THERM_UNIT } from "../../func/globals";
+import Stats from "./Stats";
 import Graphic from "../Graphic";
 import BoxList from "../BoxList";
 import "./styles.scss";
@@ -13,6 +15,7 @@ const DayDetail = () => {
   let item = location.state !== undefined && location.state.item;
   const [elements, setElements] = useState([]);
   const [categories, setCategories] = useState([]);
+  const thermUnitReducer = useSelector((state) => state.thermUnitReducer);
 
   useEffect(() => {
     const seedGraphicData = () => {
@@ -53,20 +56,32 @@ const DayDetail = () => {
               alt="icon"
             />
             <div className="temperature">
-              <span className="value">{item && item.temp.day}°</span>
-              <span className="description">{item && item.weather[0].description}</span>
+              <span className="value">
+                {item && item.temp.day}
+                {thermUnitReducer.unit === "metric"
+                  ? SHORT_THERM_UNIT[0]
+                  : thermUnitReducer.unit === "imperial"
+                  ? SHORT_THERM_UNIT[1]
+                  : SHORT_THERM_UNIT[2]}
+              </span>
+              <span className="description">
+                {item && item.weather[0].description}
+              </span>
               <span className="description-altern">
                 Feels like: {item && item.feels_like.day}°
+                {thermUnitReducer.unit}
               </span>
             </div>
           </div>
           <div className="stats-container">
-            <Stats item={item}/>
+            <Stats item={item} />
           </div>
         </div>
       </div>
       <Graphic elements={elements} categories={categories} />
-      <BoxList elements={location.state !== undefined && location.state.elements} />
+      <BoxList
+        elements={location.state !== undefined && location.state.elements}
+      />
     </div>
   );
 };

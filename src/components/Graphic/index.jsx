@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactApexChart from "react-apexcharts";
+import Loader from "../Loader";
 
 export default function Graphic({ elements, categories }) {
   const [options, setOptions] = useState();
@@ -50,7 +51,7 @@ export default function Graphic({ elements, categories }) {
     });
   }, [elements, categories]);
 
-  let renderGraphic = <div>Cargando ...</div>;
+  let renderGraphic = <Loader />;
   if (elements && elements.length !== 0) {
     renderGraphic = (
       <ReactApexChart

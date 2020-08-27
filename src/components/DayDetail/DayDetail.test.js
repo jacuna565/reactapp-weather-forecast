@@ -2,8 +2,8 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { render } from "@testing-library/react";
 import DayDetail from "./index";
-import ApexCharts from "apexcharts";
-import ReactApexChart from "react-apexcharts";
+import { Provider } from "react-redux";
+import store from "../../store";
 
 jest.mock("react-apexcharts", () =>
   jest.fn(() => {
@@ -20,9 +20,11 @@ jest.mock("apexcharts", () => ({
 
 it("Renders correctly", () => {
   const { queryByTestId } = render(
-    <BrowserRouter>
-      <DayDetail />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <DayDetail />
+      </BrowserRouter>
+    </Provider>
   );
   expect(queryByTestId("daydetail-container")).toBeTruthy();
 });
