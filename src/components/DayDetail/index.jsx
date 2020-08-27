@@ -11,6 +11,7 @@ import {
   WiDaySunny,
 } from "react-icons/wi";
 import { IoIosArrowBack } from "react-icons/io";
+import {MONTHS} from "../../func/globals";
 import "./styles.scss";
 import Graphic from "../Graphic";
 import Tooltip from "../Tooltip";
@@ -50,7 +51,7 @@ const DayDetail = () => {
           <IoIosArrowBack className="icon-header" />
         </Link>
         <h3 className="title-day">{path}</h3>
-        <span className="title-date">{moment.unix(item.dt).format("ll")}</span>
+        <span className="title-date">{moment.unix(item.dt).format("l")}</span>
         <div className="detail-container">
           <div className="temperature-container">
             <img

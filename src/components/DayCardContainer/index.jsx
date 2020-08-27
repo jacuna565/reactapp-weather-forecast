@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-import { city } from "../../func/globals";
+import { city, SHORT_WEEK_DAY, WEEK_DAY } from "../../func/globals";
 import "./styles.scss";
 import DayCard from "../DayCard";
 
 import allActions from "../../actions";
-
-const SHORT_WEEK_DAY = ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"];
 
 const DayCardContainer = ({ thermometricUnit }) => {
   const weatherReducer = useSelector((state) => state.weatherReducer);
@@ -81,12 +79,11 @@ const DayCardContainer = ({ thermometricUnit }) => {
       listDaily.forEach((item, index) => {
         if (index > 0 && index < 6) {
           var day = moment.unix(item.dt).format("YYYY-MM-DD HH:mm");
-          var dayText = moment(day).format("dddd");
           var dayNumber = moment(day).day();
           data.push(
             <DayCard
               key={index}
-              day={dayText}
+              day={WEEK_DAY[dayNumber]}
               shortTitle={SHORT_WEEK_DAY[dayNumber]}
               maxTemp={item.temp.max}
               minTemp={item.temp.min}

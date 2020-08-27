@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./styles.scss";
 
 import DayCardContainer from "../DayCardContainer";
+import allActions from "../../actions";
 
 const Home = () => {
-  const [thermometricUnit, setThermometricUnit] = useState("Celsius");
+  const thermUnitReducer = useSelector((state) => state.thermUnitReducer);
+  const [thermometricUnit, setThermometricUnit] = useState(thermUnitReducer.unit);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // if(thermUnitReducer !== thermometricUnit){
+      dispatch(allActions.weatherActions.getThermUnit(thermometricUnit));
+    // }
+  },[thermometricUnit])
 
   const handleSelected = (event) => {
     setThermometricUnit(event.target.getAttribute("name"));
@@ -12,7 +22,7 @@ const Home = () => {
 
   return (
     <div data-testid="home-container" className="container">
-      <h3 className="region-title">Santiago, CL</h3>
+      <h3 className="region-title">Santiago, CL {thermUnitReducer.unit}</h3>
       <div className="thermometric-unit">
         <span
           data-testid="span-clicked"

@@ -5,6 +5,7 @@ import {
   LOAD_WEATHER_EVERY3HOURS_START,
   LOAD_WEATHER_EVERY3HOURS_SUCCESS,
   LOAD_WEATHER_EVERY3HOURS_FAILURE,
+  GET_THERM_UNIT,
 } from "./types";
 import getLogoutClient from "../func/loggedOutClient";
 
@@ -47,7 +48,15 @@ const loadWeatherEvery3Hours = (units, cityname) => async ( dispatch, getState) 
     });
 };
 
+const getThermUnit = (unit) => (dispatch, getState) =>{
+  dispatch({
+    type: GET_THERM_UNIT,
+    payload: unit,
+  });
+}
+
 export default {
   loadWeather,
   loadWeatherEvery3Hours,
+  getThermUnit
 };
