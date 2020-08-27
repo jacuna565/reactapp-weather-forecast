@@ -11,7 +11,7 @@ React weather forecast app with react router, redux y redux thunk (Using hooks t
 
 This repo uses [openweathermap](https://openweathermap.org/api/one-call-api) (one-call-api) as our APIrest
 
-Preview a [Demo](https://weather-forecast.herokuapp.com/)
+Preview a [Demo](https://reactapp-weather-forecast.herokuapp.com/)
 
 ## Available Scripts
 
